@@ -1,0 +1,3 @@
+-keeppackagenames ir.metrix
+
+

@@ -1,0 +1,42 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ir.metrix.notification">
+
+    <application>
+        <provider
+            android:name="ir.metrix.notification.internal.NotificationInitializer"
+            android:authorities="${applicationId}.metrixnotificationinitializer"
+            android:initOrder="5"
+            android:exported="false"
+            android:enabled="true" />
+
+        <service
+            android:name="ir.metrix.notification.messaging.fcm.FcmService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".receivers.BootCompletedIntentReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Notification -->
+        <service android:name="ir.metrix.notification.push.NotificationActionService" />
+
+        <activity
+            android:name="ir.metrix.notification.ui.PopupDialogActivity"
+            android:theme="@style/MetrixTransparent"
+            android:excludeFromRecents="true">
+        </activity>
+
+        <activity android:name="ir.metrix.notification.ui.WebViewActivity"/>
+
+        <receiver android:name="ir.metrix.notification.push.ScheduledNotificationReceiver"  android:enabled="true"/>
+
+        <receiver android:name="ir.metrix.notification.push.NotificationAppInstaller$DownloadCompleteReceiver" android:enabled="true" android:exported="false" />
+        <receiver android:name="ir.metrix.notification.push.NotificationAppInstaller$DownloadCompleteNotificationClickReceiver" android:enabled="true"  android:exported="false" />
+
+    </application>
+</manifest>

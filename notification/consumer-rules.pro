@@ -1,0 +1,1 @@
+-keeppackagenames ir.metrix.notification

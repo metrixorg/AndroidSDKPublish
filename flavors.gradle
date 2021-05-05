@@ -1,0 +1,23 @@
+ext.flavorConfig = {
+
+    flavorDimensions "default"
+    productFlavors {
+        android {
+        }
+
+        unity {
+        }
+
+        reactnative {
+        }
+
+        flutter {
+        }
+
+        cordova {
+        }
+
+        webview {
+        }
+    }
+}

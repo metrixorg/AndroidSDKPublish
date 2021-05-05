@@ -1,0 +1,4 @@
+rootProject.name='MetrixSDK'
+include ':metrixPlus'
+include ':notification'
+include ':metrix'

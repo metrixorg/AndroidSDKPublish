@@ -1,0 +1,32 @@
+apply plugin: 'com.android.library'
+apply from: "${rootProject.projectDir}/flavors.gradle"
+
+android {
+    compileSdkVersion setup.compileSdk
+
+    defaultConfig {
+        minSdkVersion setup.minSdk
+        targetSdkVersion setup.targetSdk
+        versionCode release.metrixVC
+        versionName release.metrixVersionName
+
+        buildConfigField 'String', 'METRIX_VERSION_NAME', "\"${release.metrixVersionName}\""
+        buildConfigField 'int', 'METRIX_VC', "${release.metrixVC}"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
+        }
+    }
+
+    with flavorConfig
+}
+
+dependencies {
+    api project(":metrix")
+    api project(":notification")
+}
